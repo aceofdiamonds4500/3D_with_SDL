@@ -1,0 +1,8 @@
+/home/nick/CLionProjects/GameEngine/build/CMakeFiles/GameEngine.dir
+/home/nick/CLionProjects/GameEngine/build/CMakeFiles/edit_cache.dir
+/home/nick/CLionProjects/GameEngine/build/CMakeFiles/rebuild_cache.dir
+/home/nick/CLionProjects/GameEngine/build/vendored/SDL/CMakeFiles/SDL3-shared.dir
+/home/nick/CLionProjects/GameEngine/build/vendored/SDL/CMakeFiles/SDL3_test.dir
+/home/nick/CLionProjects/GameEngine/build/vendored/SDL/CMakeFiles/SDL_uclibc.dir
+/home/nick/CLionProjects/GameEngine/build/vendored/SDL/CMakeFiles/edit_cache.dir
+/home/nick/CLionProjects/GameEngine/build/vendored/SDL/CMakeFiles/rebuild_cache.dir

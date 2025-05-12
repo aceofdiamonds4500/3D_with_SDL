@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/nick/CLionProjects/GameEngine/build/cmake_install.cmake",
+		"/home/nick/CLionProjects/GameEngine/build/vendored/SDL/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

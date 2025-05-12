@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/GameEngine.dir/link.d CMakeFiles/GameEngine.dir/main.c.o -o GameEngine  -Wl,-rpath,/home/nick/CLionProjects/GameEngine/build libSDL3.so.0.3.0
