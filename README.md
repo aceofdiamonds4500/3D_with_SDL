@@ -13,6 +13,8 @@ player movement)
   - `A` - Strafe left
   - `D` - Strafe right
   - `Left and right` - Turn left and right
+- View controls
+  - `M` - change perspective
 
 ## TO-DO
 I need to work on my first-person perspective and my third-person map that moves

@@ -24,6 +24,23 @@ int view_mode = 1;
 int xa = 240; int xb = 400;
 int ya = 450; int yb = 356;
 
+void TransformLineSegment(int x1, int y1, int x2, int y2) {
+    int vx1 = x1;
+    int vy1 = y1;
+    int vx2 = x2;
+    int vy2 = y2;
+
+    double tx1 = vx1 - player.x; double ty1 = vy1 - player.y;
+    double tx2 = vx2 - player.x; double ty2 = vy2 - player.y;
+
+    double tz1 = tx1 * SDL_cos(player.angle) + ty1 * SDL_sin(player.angle);
+    double tz2 = tx2 * SDL_cos(player.angle) + ty2 * SDL_sin(player.angle);
+    tx1 = tx1 * SDL_sin(player.angle) - ty1 * SDL_cos(player.angle);
+    tx2 = tx2 * SDL_sin(player.angle) - ty2 * SDL_cos(player.angle);
+
+    SDL_RenderLine(renderer, MID_X - tx1, MID_Y - tz1, MID_X - tx2, MID_Y - tz2);
+}
+
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[]) {
     SDL_SetAppMetadata("Example Renderer Lines", "1.0", "com.example.renderer-lines");
 
@@ -82,25 +99,12 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);  /* black */
     SDL_RenderClear(renderer);
-    int vx1 = xa;
-    int vy1 = ya;
-    int vx2 = xb;
-    int vy2 = yb;
-
-    double tx1 = vx1 - player.x; double ty1 = vy1 - player.y;
-    double tx2 = vx2 - player.x; double ty2 = vy2 - player.y;
-
-    double tz1 = tx1 * SDL_cos(player.angle) + ty1 * SDL_sin(player.angle);
-    double tz2 = tx2 * SDL_cos(player.angle) + ty2 * SDL_sin(player.angle);
-    tx1 = tx1 * SDL_sin(player.angle) - ty1 * SDL_cos(player.angle);
-    tx2 = tx2 * SDL_sin(player.angle) - ty2 * SDL_cos(player.angle);
 
     if (view_mode == 1) {
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderLine(renderer, player.x,player.y , SDL_cos(player.angle)*20 + player.x,SDL_sin(player.angle)*20 + player.y);
 
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
-        SDL_RenderLine(renderer, xa, ya, xb, yb);
         SDL_RenderLine(renderer, xa, ya, xb, ya);
         SDL_RenderLine(renderer, xa, yb, xb, yb);
         SDL_RenderLine(renderer, xa, yb, xa, ya);
@@ -111,68 +115,15 @@ SDL_AppResult SDL_AppIterate(void *appstate)
         SDL_RenderLine(renderer, MID_X,MID_Y , MID_X,MID_Y-20);
 //320 - tx1, 240 - tz1, 320 - tx2, 240 - tz1
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
-        SDL_RenderLine(renderer, 320 - tx1, 240 - tz1, 320 - tx2, 240 - tz2);
-
-        vx1 = xa;
-        vy1 = ya;
-        vx2 = xb;
-        vy2 = ya;
-
-        tx1 = vx1 - player.x; ty1 = vy1 - player.y;
-        tx2 = vx2 - player.x; ty2 = vy2 - player.y;
-
-        tz1 = tx1 * SDL_cos(player.angle) + ty1 * SDL_sin(player.angle);
-        tz2 = tx2 * SDL_cos(player.angle) + ty2 * SDL_sin(player.angle);
-        tx1 = tx1 * SDL_sin(player.angle) - ty1 * SDL_cos(player.angle);
-        tx2 = tx2 * SDL_sin(player.angle) - ty2 * SDL_cos(player.angle);
-        SDL_RenderLine(renderer, 320 - tx1, 240 - tz1, 320 - tx2, 240 - tz2);
-
-        vx1 = xa;
-        vy1 = yb;
-        vx2 = xb;
-        vy2 = yb;
-
-        tx1 = vx1 - player.x; ty1 = vy1 - player.y;
-        tx2 = vx2 - player.x; ty2 = vy2 - player.y;
-
-        tz1 = tx1 * SDL_cos(player.angle) + ty1 * SDL_sin(player.angle);
-        tz2 = tx2 * SDL_cos(player.angle) + ty2 * SDL_sin(player.angle);
-        tx1 = tx1 * SDL_sin(player.angle) - ty1 * SDL_cos(player.angle);
-        tx2 = tx2 * SDL_sin(player.angle) - ty2 * SDL_cos(player.angle);
-        SDL_RenderLine(renderer, 320 - tx1, 240 - tz1, 320 - tx2, 240 - tz2);
-
-        vx1 = xa;
-        vy1 = yb;
-        vx2 = xa;
-        vy2 = ya;
-
-        tx1 = vx1 - player.x; ty1 = vy1 - player.y;
-        tx2 = vx2 - player.x; ty2 = vy2 - player.y;
-
-        tz1 = tx1 * SDL_cos(player.angle) + ty1 * SDL_sin(player.angle);
-        tz2 = tx2 * SDL_cos(player.angle) + ty2 * SDL_sin(player.angle);
-        tx1 = tx1 * SDL_sin(player.angle) - ty1 * SDL_cos(player.angle);
-        tx2 = tx2 * SDL_sin(player.angle) - ty2 * SDL_cos(player.angle);
-        SDL_RenderLine(renderer, 320 - tx1, 240 - tz1, 320 - tx2, 240 - tz2);
-
-        vx1 = xb;
-        vy1 = yb;
-        vx2 = xb;
-        vy2 = ya;
-
-        tx1 = vx1 - player.x; ty1 = vy1 - player.y;
-        tx2 = vx2 - player.x; ty2 = vy2 - player.y;
-
-        tz1 = tx1 * SDL_cos(player.angle) + ty1 * SDL_sin(player.angle);
-        tz2 = tx2 * SDL_cos(player.angle) + ty2 * SDL_sin(player.angle);
-        tx1 = tx1 * SDL_sin(player.angle) - ty1 * SDL_cos(player.angle);
-        tx2 = tx2 * SDL_sin(player.angle) - ty2 * SDL_cos(player.angle);
-        SDL_RenderLine(renderer, 320 - tx1, 240 - tz1, 320 - tx2, 240 - tz2);
+        TransformLineSegment(xa,ya,xb,ya);
+        TransformLineSegment(xa,yb,xb,yb);
+        TransformLineSegment(xa,yb,xa,ya);
+        TransformLineSegment(xb,yb,xb,ya);
 
         // SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
         // SDL_RenderLines(renderer, line_points, SDL_arraysize(line_points));
 }
-    printf("%f %f %f %f\n", tx1, tz1, tx2, tz2);
+    //printf("%f %f %f %f\n", tx1, tz1, tx2, tz2);
 
     SDL_RenderPresent(renderer);
 
