@@ -17,10 +17,8 @@ player movement)
   - `M` - change perspective
 
 ## TO-DO
-I need to work on my first-person perspective and my third-person map that moves
-the world around the player's view.
-
-I wrote the world-around-player perspective in a really hacky way but it's 3 am and I'm done with it for now.
+**5-13-25**: The generation of the map is done in all three modes, but it's important that I tweak some field-of-view
+things and work on making the line drawing method more efficient.
 
 ## Building
 
